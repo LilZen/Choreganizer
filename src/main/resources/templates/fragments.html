@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://thymeleaf.org/">
+<head th:fragments="head">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="${title}">Chores</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
 </head>
 <body>
+
+<nav th:fragments="nav">
+    <a href="/home">Home</a>
+    <a href="/add">Add</a>
+</nav>
 
 </body>
 </html>
