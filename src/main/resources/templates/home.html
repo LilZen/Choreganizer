@@ -8,17 +8,18 @@
 
 <p th:uless="${chores} and ${chores.size()}">HOORAY!! Chores are completed!</p>
 
-<table class="table">
+<table class="choreTable">
 
     <tr>
-        <th>Chore</th>
-        <th>Cleaner</th>
-        <th>Completion Day</th>
+        <th onclick="sortTable(0)">Chore</th>
+        <th onclick="sortTable(1)">Cleaner</th>
+        <th onclick="sortTable(2)">Completion Day</th>
     </tr>
 
     <tr th:each="chore : ${chores}">
         <td th:text="${chore.choreName}"></td>
     </tr>
+
 </table>
 
 </body>
