@@ -6,7 +6,7 @@
 <nav th:replace="fragments :: nav"></nav>
 <h1 th:text="${title}">Default Title</h1>
 
-<p th:uless="${chores} and ${chores.size()}">HOORAY!! Chores are completed!</p>
+<p th:uless="${chores} and ${chores.size()}">HOORAY!! Chores are completed! <a href="/add">You can add chores here.</a> </p>
 
 <table class="choreTable">
 

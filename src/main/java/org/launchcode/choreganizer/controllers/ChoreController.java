@@ -1,5 +1,6 @@
 package org.launchcode.choreganizer.controllers;
 
+import org.launchcode.choreganizer.models.Chore;
 import org.launchcode.choreganizer.models.data.ChoreDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,5 +22,14 @@ public class ChoreController {
         model.addAttribute("title", "Chores");
 
         return "home";
+    }
+
+    @RequestMapping(value="add")
+    public String addChore(Model model){
+
+        model.addAttribute("title", "Add Chore");
+        model.addAttribute(new Chore());
+        model.addAttribute("chores", choreDao.findAll());
+        return "add";
     }
 }

@@ -3,5 +3,26 @@
 <head th:replace=" fragments :: head"></head>
 <body>
 
+<nav th:replace="fragments :: nav"></nav>
+<h1>Add Chores</h1>
+
+<form action="/add" method="post" th:object="${chore}">
+    <select name="${chores}" required>
+        <option value="" selected disabled hidden>Select a Chore</option>
+        <option value="bedroom">Clean Bedroom</option>
+        <option value="bathroom">Clean Bathroom</option>
+        <option value="dishes">Do the Dishes</option>
+        <option value="living room">Clean Living Room</option>
+        <option value="set table">Set the Table</option>
+        <option value="floor">Sweep and Mop Floors</option>
+        <option value="vacuum">Vacuum Floors</option>
+        <option value="windows">Clean Windows</option>
+        <option value="counters">Clean kitchen counters</option>
+    </select>
+
+    <input type="submit" value="Add Chore">
+
+</form>
+
 </body>
 </html>
