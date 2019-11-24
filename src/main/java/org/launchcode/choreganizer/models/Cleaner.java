@@ -1,27 +1,50 @@
 package org.launchcode.choreganizer.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Cleaner {
 
     @Id
     @GeneratedValue
-    private int cleanerId;
+    private int Id;
 
     @NotNull
-    private String cleanerName;
+    private String cleaner;
+
+    @NotNull
+    private Date dueDate;
+
+    @OneToMany
+    @JoinColumn(name = "cleaner_id")
+    private List<Chore> chores = new ArrayList<>();
 
     public Cleaner() {}
 
-    public Cleaner(String cleanerName) { this.cleanerName = cleanerName; }
+    public Cleaner(String cleaner, Date dueDate) {
+        this.cleaner = cleaner;
+        this.dueDate = dueDate;
+    }
 
-    public int getCleanerId() { return cleanerId; }
+    public int getId() { return Id; }
 
-    public String getCleanerName() { return cleanerName; }
+    public String getCleaner() { return cleaner; }
 
-    public void setCleanerName() { this.cleanerName = cleanerName; }
+    public void setCleanerName() { this.cleaner = cleaner; }
+
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public List<Chore> getChores() {
+        return chores;
+    }
 }
