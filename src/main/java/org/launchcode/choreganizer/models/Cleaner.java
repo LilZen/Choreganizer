@@ -3,7 +3,6 @@ package org.launchcode.choreganizer.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -17,7 +16,6 @@ public class Cleaner {
     private String cleaner;
 
     @OneToMany
-    @JoinColumn(name = "cleaner_id")
     private List<Chore> chores = new ArrayList<>();
 
     public Cleaner() {}
@@ -36,3 +34,4 @@ public class Cleaner {
         return chores;
     }
 }
+
