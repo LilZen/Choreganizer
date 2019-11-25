@@ -11,13 +11,15 @@
 <table class="choreTable">
 
     <tr>
-        <th onclick="sortTable(0)">Chore</th>
-        <th onclick="sortTable(1)">Cleaner</th>
+        <th onclick="sortTable(0)">Chore | </th>
+        <th onclick="sortTable(1)">Cleaner | </th>
         <th onclick="sortTable(2)">Completion Day</th>
     </tr>
 
     <tr th:each="chore : ${chores}">
         <td th:text="${chore.choreName}"></td>
+        <td th:text="${chore.cleaner}"></td>
+        <td th:text="${chore.dueDate}"></td>
     </tr>
 
 </table>
