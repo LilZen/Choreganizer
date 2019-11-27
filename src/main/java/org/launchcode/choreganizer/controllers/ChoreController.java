@@ -54,7 +54,7 @@ public class ChoreController {
         Cleaner clean = cleanerDao.findById(cleanerId).orElse(null);
         newChore.setCleaner( clean );
         choreDao.save(newChore);
-        return "";
+        return "add";
 
     }
 }

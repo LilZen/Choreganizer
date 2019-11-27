@@ -10,9 +10,6 @@ public class CreateCleaner {
     @Size(min= 5, max= 15)
     private String username;
 
-    @Email(message = "Invalid email address")
-    private String email;
-
     @NotNull
     @Size(min=8, message = "Password must be at least 8 characters long")
     private String password;
@@ -20,9 +17,14 @@ public class CreateCleaner {
     @NotNull(message = "Passwords do not match")
     private String verifyPassword;
 
-    public CreateCleaner(String username, String email, String password) {
+    public CreateCleaner(String username, String password, String verifyPassword) {
         this.username = username;
-        this.email = email;
+        this.password = password;
+        this.verifyPassword = verifyPassword;
+    }
+
+    public CreateCleaner(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
@@ -34,14 +36,6 @@ public class CreateCleaner {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPassword() {

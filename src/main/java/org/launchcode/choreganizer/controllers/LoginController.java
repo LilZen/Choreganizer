@@ -13,23 +13,23 @@ import javax.validation.Valid;
 @Controller
 public class LoginController {
 
-    @RequestMapping(value = "registration", method = RequestMethod.GET)
-    public String registerCleaner(Model model) {
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public String getLoginCleaner(Model model) {
         model.addAttribute(new CreateCleaner());
-        model.addAttribute("title", "register");
-            return "registration";
+        model.addAttribute("title", "Login");
+            return "login";
     }
 
-    @RequestMapping(value = "registration", method = RequestMethod.POST)
-    public String registerCleaner(Model model, @ModelAttribute @Valid CreateCleaner user,
-                                  Errors errors, String verify) {
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public String verifyLoginCleaner(Model model, @ModelAttribute @Valid CreateCleaner cleaner,
+                               Errors errors, String verify) {
 
-        model.addAttribute(user);
+        model.addAttribute(cleaner);
         boolean passwordsMatch = true;
-        if (user.getPassword() == null || verify == null
-                || !user.getPassword().equals(verify)) {
+        if (cleaner.getPassword() == null || verify == null
+                || !cleaner.getPassword().equals(verify)) {
             passwordsMatch = false;
-            user.setPassword("");
+            cleaner.setPassword("");
             model.addAttribute("verifyError", "Passwords must match");
         }
 
@@ -37,6 +37,30 @@ public class LoginController {
             return "home";
         }
 
-        return "Registration";
+        return "login";
+    }
+    @RequestMapping(value="registration", method = RequestMethod.GET)
+    public String registerCleaner (Model model) {
+        model.addAttribute((new CreateCleaner()));
+        model.addAttribute("title", "register");
+        return "registration";
+    }
+    @RequestMapping(value = "registration", method = RequestMethod.POST)
+        public String verifyRegisterCleaner(Model model, @ModelAttribute @Valid CreateCleaner cleaner, Errors errors, String verify) {
+
+        model.addAttribute(cleaner);
+        boolean passwordsMatch = true;
+        if (cleaner.getPassword() == null || verify == null
+                || !cleaner.getPassword().equals(verify)) {
+            passwordsMatch = false;
+            cleaner.setPassword("");
+            model.addAttribute("verifyError", "Passwords must match");
+        }
+
+        if (!errors.hasErrors() && passwordsMatch) {
+            return "home";
+        }
+
+        return "login";
     }
 }
