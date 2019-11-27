@@ -1,6 +1,6 @@
 package org.launchcode.choreganizer.controllers;
 
-import org.launchcode.choreganizer.models.User;
+import org.launchcode.choreganizer.models.CreateCleaner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 
 @Controller
-public class UserController {
+public class LoginController {
 
-@RequestMapping(value = "registration", method = RequestMethod.GET)
-public String add(Model model) {
-    model.addAttribute(new User());
-    model.addAttribute("title", "Register");
-        return "registration";
+    @RequestMapping(value = "registration", method = RequestMethod.GET)
+    public String registerCleaner(Model model) {
+        model.addAttribute(new CreateCleaner());
+        model.addAttribute("title", "register");
+            return "registration";
     }
 
-    @RequestMapping(value = "registation", method = RequestMethod.POST)
-    public String add(Model model, @ModelAttribute @Valid User user,
-                      Errors errors, String verify) {
+    @RequestMapping(value = "registration", method = RequestMethod.POST)
+    public String registerCleaner(Model model, @ModelAttribute @Valid CreateCleaner user,
+                                  Errors errors, String verify) {
 
         model.addAttribute(user);
         boolean passwordsMatch = true;
@@ -37,8 +37,6 @@ public String add(Model model) {
             return "home";
         }
 
-        return "registation";
+        return "Registration";
     }
-
-
 }
