@@ -33,7 +33,6 @@ public class Chore {
 
     public void setChoreName() { this.choreName = choreName; }
 
-
     public Date getDueDate() {
         return dueDate;
     }

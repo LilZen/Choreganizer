@@ -5,20 +5,21 @@
 
 <heading th:replace="fragments :: heading"></heading>
 
-<form action="login" method="post">
-    <div>
+<Not a Choreganizer? <a href="login/registration">Register here!</a>
+
+<form method="post">
+    <div class="form-group">
         <label for="username">Username:
             <input type="text" id="username" required>
         </label>
     </div>
 
-    <div>
+    <div class="form-group">
         <label for="password">Password:
             <input type="password" id="password" required>
         </label>
     </div>
     <input type="submit" value="Choreganize!">
-
 </form>
 
 </body>

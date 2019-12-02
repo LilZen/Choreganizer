@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head th:replace=" fragments :: head"></head>
+
+<body class="container">
+
+<heading th:replace="fragments :: heading"></heading>
+
+<nav th:replace="fragments :: nav"></nav>
+
+<h1>Add Chores</h1>
+
+<form action="add" method="post" th:object="${chore}">
+    <div class="form-group">
+    <select th:name="choreId" required>
+        <option value="add" selected disabled hidden>Select a Chore</option>
+        <option th:each:="chore : ${chores}"
+                th:text="${chore.choreName}"
+                th:value="${chore.id}"></option>
+    </select>
+    </div>
+
+    <div class="form-group">
+        <select th:name="cleanerId" required>
+            <option value="add" selected disabled hidden>Select a Cleaner</option>
+            <option th:each="cleaner : ${cleaners}"
+                    th:text="${cleaner.cleanerName}"
+                    th:value="${cleaner.id}"></option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <input type="date" name="dueDate">
+    </div>
+
+    <input type="submit" value="Add Chore">
+
+</form>
+
+</body>
+</html>
