@@ -14,9 +14,10 @@
     <div class="form-group">
     <select th:name="choreId" required>
         <option value="add" selected disabled hidden>Select a Chore</option>
-        <option th:each:="chore : ${chores}"
-                th:text="${chore.choreName}"
-                th:value="${chore.id}"></option>
+        <option>Clean Bedroom </option>
+        <option>Clean Bathroom </option>
+        <option>Clean Kitchen </option>
+        <option>Clean Livingroom </option>
     </select>
     </div>
 
@@ -24,8 +25,10 @@
         <select th:name="cleanerId" required>
             <option value="add" selected disabled hidden>Select a Cleaner</option>
             <option th:each="cleaner : ${cleaners}"
-                    th:text="${cleaner.cleanerName}"
-                    th:value="${cleaner.id}"></option>
+                    th:text="*{cleaner.cleanerName}"
+                    th:value="${cleaner.id}">
+
+            </option>
         </select>
     </div>
 
