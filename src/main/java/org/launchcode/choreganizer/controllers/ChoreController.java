@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping(value = "chore")
 public class ChoreController {
 
     @Autowired
@@ -24,13 +25,13 @@ public class ChoreController {
     @Autowired
     CleanerDao cleanerDao;
 
-    @RequestMapping(value="home")
+    @RequestMapping(value="")
     public String findChore(Model model){
 
         model.addAttribute("chores", choreDao.findAll());
         model.addAttribute("title", "Chores");
 
-        return "home";
+        return "chore/home";
     }
 
     @RequestMapping(value="add", method = RequestMethod.GET)
@@ -39,7 +40,7 @@ public class ChoreController {
         model.addAttribute("title", "Add Chore");
         model.addAttribute(new Chore());
         model.addAttribute("chores", choreDao.findAll());
-        return "add";
+        return "chore/add";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
@@ -47,14 +48,14 @@ public class ChoreController {
 
         if(errors.hasErrors()) {
             model.addAttribute("title", "Add Chore");
-            model.addAttribute("cleaners", cleanerDao.findAll());
-            return "add";
+            model.addAttribute("Cleaner", cleanerDao.findAll());
+            return "chore/add";
         }
 
         Cleaner clean = cleanerDao.findById(cleanerId).orElse(null);
         newChore.setCleaner( clean );
         choreDao.save(newChore);
-        return "add";
+        return "chore/add";
 
     }
 }

@@ -15,7 +15,7 @@ public class Cleaner {
     @NotNull
     private String cleaner;
 
-    @OneToMany
+    @ManyToMany
     private List<Chore> chores = new ArrayList<>();
 
     public Cleaner() {}
@@ -24,11 +24,11 @@ public class Cleaner {
         this.cleaner = cleaner;
     }
 
-    public int getCleanerId() { return id; }
+    public int getId() { return id; }
 
     public String getCleaner() { return cleaner; }
 
-    public void setCleanerName() { this.cleaner = cleaner; }
+    public void setCleaner() { this.cleaner = cleaner; }
 
     public List<Chore> getChores() {
         return chores;

@@ -4,7 +4,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class CreateCleaner {
+public class Login {
 
     @NotNull
     @Size(min= 5, max= 15)
@@ -17,18 +17,18 @@ public class CreateCleaner {
     @NotNull(message = "Passwords do not match")
     private String verifyPassword;
 
-    public CreateCleaner(String username, String password, String verifyPassword) {
+    public Login(String username, String password, String verifyPassword) {
         this.username = username;
         this.password = password;
         this.verifyPassword = verifyPassword;
     }
 
-    public CreateCleaner(String username, String password) {
+    public Login(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public CreateCleaner() {}
+    public Login() {}
 
     public String getUsername() {
         return username;

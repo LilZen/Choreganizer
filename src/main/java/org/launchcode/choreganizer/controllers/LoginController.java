@@ -1,6 +1,8 @@
 package org.launchcode.choreganizer.controllers;
 
-import org.launchcode.choreganizer.models.CreateCleaner;
+import org.launchcode.choreganizer.models.Login;
+import org.launchcode.choreganizer.models.data.LoginDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -11,17 +13,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping("login")
 public class LoginController {
 
-    @RequestMapping(value = "login", method = RequestMethod.GET)
+    @Autowired
+    LoginDao loginDao;
+
+    @RequestMapping(value = " ", method = RequestMethod.GET)
     public String getLoginCleaner(Model model) {
-        model.addAttribute(new CreateCleaner());
+        model.addAttribute(new Login());
         model.addAttribute("title", "Login");
-            return "login";
+            return "login/login";
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String verifyLoginCleaner(Model model, @ModelAttribute @Valid CreateCleaner cleaner,
+    @RequestMapping(value = " ", method = RequestMethod.POST)
+    public String verifyLoginCleaner(Model model, @ModelAttribute @Valid Login cleaner,
                                Errors errors, String verify) {
 
         model.addAttribute(cleaner);
@@ -34,19 +40,19 @@ public class LoginController {
         }
 
         if (!errors.hasErrors() && passwordsMatch) {
-            return "home";
+            return "chore/home";
         }
 
-        return "login";
+        return "login/login";
     }
     @RequestMapping(value="registration", method = RequestMethod.GET)
     public String registerCleaner (Model model) {
-        model.addAttribute((new CreateCleaner()));
+        model.addAttribute((new Login()));
         model.addAttribute("title", "register");
-        return "registration";
+        return "login/registration";
     }
     @RequestMapping(value = "registration", method = RequestMethod.POST)
-        public String verifyRegisterCleaner(Model model, @ModelAttribute @Valid CreateCleaner cleaner, Errors errors, String verify) {
+        public String verifyRegisterCleaner(Model model, @ModelAttribute @Valid Login cleaner, Errors errors, String verify) {
 
         model.addAttribute(cleaner);
         boolean passwordsMatch = true;
@@ -58,9 +64,9 @@ public class LoginController {
         }
 
         if (!errors.hasErrors() && passwordsMatch) {
-            return "home";
+            return "chore/home";
         }
 
-        return "login";
+        return "login/login";
     }
 }
