@@ -3,8 +3,6 @@ package org.launchcode.choreganizer.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Login {
@@ -15,38 +13,29 @@ public class Login {
 
     @NotNull
     @Size(min= 5, max= 15)
-    private String username;
+    private String cleaner;
 
     @NotNull
-    @Size(min=8, message = "Password must be at least 8 characters long")
+    @Size(min=8, max= 25, message = "Password must be between 8 and 25 characters")
     private String password;
 
     @NotNull(message = "Passwords do not match")
     @Transient
     private String verifyPassword;
 
-    @ManyToMany(mappedBy = "users")
-    private List<Cleaner> cleaners =new ArrayList<>();
-
-    public Login(String username, String password, String verifyPassword) {
-        this.username = username;
-        this.password = password;
-        this.verifyPassword = verifyPassword;
-    }
-
-    public Login(String username, String password) {
-        this.username = username;
+    public Login(String cleaner, String password) {
+        this.cleaner = cleaner;
         this.password = password;
     }
 
     public Login() {}
 
-    public String getUsername() {
-        return username;
+    public String getCleaner() {
+        return cleaner;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setCleaner(String cleaner) {
+        this.cleaner = cleaner;
     }
 
     public String getPassword() {
@@ -65,14 +54,6 @@ public class Login {
     public void setVerifyPassword(String verifyPassword) {
         this.verifyPassword = verifyPassword;
         checkPassword();
-    }
-
-    public List<Cleaner> getCleaners() {
-        return cleaners;
-    }
-
-    public void setCleaners(List<Cleaner> cleaners) {
-        this.cleaners = cleaners;
     }
 
     private void checkPassword() {
