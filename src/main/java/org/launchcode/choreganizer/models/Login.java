@@ -1,11 +1,10 @@
 package org.launchcode.choreganizer.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.constraints.Email;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Login {
@@ -23,7 +22,11 @@ public class Login {
     private String password;
 
     @NotNull(message = "Passwords do not match")
+    @Transient
     private String verifyPassword;
+
+    @ManyToMany(mappedBy = "users")
+    private List<Cleaner> cleaners =new ArrayList<>();
 
     public Login(String username, String password, String verifyPassword) {
         this.username = username;
@@ -62,6 +65,14 @@ public class Login {
     public void setVerifyPassword(String verifyPassword) {
         this.verifyPassword = verifyPassword;
         checkPassword();
+    }
+
+    public List<Cleaner> getCleaners() {
+        return cleaners;
+    }
+
+    public void setCleaners(List<Cleaner> cleaners) {
+        this.cleaners = cleaners;
     }
 
     private void checkPassword() {

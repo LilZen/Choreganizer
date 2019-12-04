@@ -18,6 +18,9 @@ public class Cleaner {
     @ManyToMany
     private List<Chore> chores = new ArrayList<>();
 
+    @ManyToMany
+    private List<Login> users =new ArrayList<>();
+
     public Cleaner() {}
 
     public Cleaner(String cleaner) {
@@ -32,6 +35,14 @@ public class Cleaner {
 
     public List<Chore> getChores() {
         return chores;
+    }
+
+    public List<Login> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<Login> users) {
+        this.users = users;
     }
 }
 

@@ -1,5 +1,6 @@
 package org.launchcode.choreganizer.controllers;
 
+import org.launchcode.choreganizer.models.Cleaner;
 import org.launchcode.choreganizer.models.Login;
 import org.launchcode.choreganizer.models.data.LoginDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,14 @@ public class LoginController {
     @Autowired
     LoginDao loginDao;
 
-    @RequestMapping(value = " ", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public String getLoginCleaner(Model model) {
         model.addAttribute(new Login());
         model.addAttribute("title", "Login");
             return "login/login";
     }
 
-    @RequestMapping(value = " ", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public String verifyLoginCleaner(Model model, @ModelAttribute @Valid Login cleaner,
                                Errors errors, String verify) {
 
@@ -64,9 +65,11 @@ public class LoginController {
         }
 
         if (!errors.hasErrors() && passwordsMatch) {
+
+            loginDao.save(cleaner);
             return "chore/home";
         }
 
-        return "login/login";
+        return "login/login ";
     }
 }
