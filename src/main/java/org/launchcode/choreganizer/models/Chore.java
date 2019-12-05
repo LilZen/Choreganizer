@@ -18,7 +18,7 @@ public class Chore {
     private Date dueDate;
 
     @ManyToOne
-    private Cleaner cleaner;
+    private Login cleaner;
 
     public Chore() {}
 
@@ -31,7 +31,7 @@ public class Chore {
 
     public String getChoreName() { return choreName; }
 
-    public void setChoreName() { this.choreName = choreName; }
+    public void setChoreName(Chore choreName) { this.choreName = this.choreName; }
 
     public Date getDueDate() {
         return dueDate;
@@ -41,11 +41,11 @@ public class Chore {
         this.dueDate = dueDate;
     }
 
-    public Cleaner getCleaner() {
+    public Login getCleaner() {
         return cleaner;
     }
 
-    public void setCleaner(Cleaner clean) {
+    public void setCleaner(Login cleaner) {
         this.cleaner = cleaner;
     }
 }

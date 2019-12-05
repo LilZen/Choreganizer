@@ -1,6 +1,5 @@
 package org.launchcode.choreganizer.controllers;
 
-import org.launchcode.choreganizer.models.Cleaner;
 import org.launchcode.choreganizer.models.Login;
 import org.launchcode.choreganizer.models.data.LoginDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,19 +30,6 @@ public class LoginController {
     public String verifyLoginCleaner(Model model, @ModelAttribute @Valid Login cleaner,
                                Errors errors, String verify) {
 
-        model.addAttribute(cleaner);
-        boolean passwordsMatch = true;
-        if (cleaner.getPassword() == null || verify == null
-                || !cleaner.getPassword().equals(verify)) {
-            passwordsMatch = false;
-            cleaner.setPassword("");
-            model.addAttribute("verifyError", "Invalid Password");
-        }
-
-        if (!errors.hasErrors() && passwordsMatch) {
-            return "chore/home";
-        }
-
         return "login/login";
     }
     @RequestMapping(value="registration", method = RequestMethod.GET)
@@ -53,12 +39,12 @@ public class LoginController {
         return "login/registration";
     }
     @RequestMapping(value = "registration", method = RequestMethod.POST)
-        public String verifyRegisterCleaner(Model model, @ModelAttribute @Valid Login cleaner, Errors errors, String verify) {
+        public String verifyRegisterCleaner(Model model, @ModelAttribute @Valid Login cleaner, Errors errors, String verifyPassword) {
 
         model.addAttribute(cleaner);
         boolean passwordsMatch = true;
-        if (cleaner.getPassword() == null || verify == null
-                || !cleaner.getPassword().equals(verify)) {
+        if (cleaner.getPassword() == null || verifyPassword == null
+                || !cleaner.getPassword().equals(verifyPassword)) {
             passwordsMatch = false;
             cleaner.setPassword("");
             model.addAttribute("verifyError", "Passwords must match");
@@ -67,9 +53,10 @@ public class LoginController {
         if (!errors.hasErrors() && passwordsMatch) {
 
             loginDao.save(cleaner);
-            return "chore/home";
+
+            return "/chore/home";
         }
 
-        return "login/registration ";
+        return "/login/registration ";
     }
 }
