@@ -27,10 +27,14 @@ public class LoginController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String verifyLoginCleaner(Model model, @ModelAttribute @Valid Login cleaner,
-                               Errors errors, String verify) {
+    public String verifyLoginCleaner(@Valid Login cleaner, Errors errors, String password) {
 
-        return "login/login";
+        if(cleaner.getPassword().equals(password)) {
+            return "chore/home";
+
+        } else {
+            return "login/login";
+        }
     }
     @RequestMapping(value="registration", method = RequestMethod.GET)
     public String registerCleaner (Model model) {
@@ -46,8 +50,8 @@ public class LoginController {
         if (cleaner.getPassword() == null || verifyPassword == null
                 || !cleaner.getPassword().equals(verifyPassword)) {
             passwordsMatch = false;
-            cleaner.setPassword("");
-            model.addAttribute("verifyError", "Passwords must match");
+            cleaner.setPassword(" ");
+            model.addAttribute(verifyPassword, "Passwords must match");
         }
 
         if (!errors.hasErrors() && passwordsMatch) {
