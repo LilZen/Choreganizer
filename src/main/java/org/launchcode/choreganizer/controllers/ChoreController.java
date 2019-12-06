@@ -1,9 +1,9 @@
 package org.launchcode.choreganizer.controllers;
 
 import org.launchcode.choreganizer.models.Chore;
-import org.launchcode.choreganizer.models.Cleaner;
+import org.launchcode.choreganizer.models.Login;
 import org.launchcode.choreganizer.models.data.ChoreDao;
-import org.launchcode.choreganizer.models.data.CleanerDao;
+import org.launchcode.choreganizer.models.data.LoginDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,9 +21,6 @@ public class ChoreController {
 
     @Autowired
     ChoreDao choreDao;
-
-    @Autowired
-    CleanerDao cleanerDao;
 
     @RequestMapping(value="")
     public String findChore(Model model){
@@ -44,16 +41,14 @@ public class ChoreController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String displayAddChore(@ModelAttribute @Valid Chore newChore, Errors errors, @RequestParam int cleanerId, Model model) {
+    public String displayAddChore(@ModelAttribute @Valid Chore newChore, Errors errors, @RequestParam int Id, Model model) {
 
         if(errors.hasErrors()) {
             model.addAttribute("title", "Add Chore");
-            model.addAttribute("Cleaner", cleanerDao.findAll());
+
             return "chore/add";
         }
 
-        Cleaner clean = cleanerDao.findById(cleanerId).orElse(null);
-        newChore.setCleaner( clean );
         choreDao.save(newChore);
         return "chore/add";
 

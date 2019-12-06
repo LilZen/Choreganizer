@@ -27,14 +27,20 @@ public class LoginController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String verifyLoginCleaner(@Valid Login cleaner, Errors errors, String password) {
+    public String verifyLoginCleaner(@Valid Login cleaner, Errors errors, String password, Model model) {
 
-        if(cleaner.getPassword().equals(password)) {
-            return "chore/home";
+        model.addAttribute(cleaner);
+        boolean passwordMatchUser = true;
+        if(!cleaner.getPassword().equals(password)) {
+            passwordMatchUser = false;
+            model.addAttribute(password, "Invalid cleaner or password");
 
-        } else {
-            return "login/login";
         }
+
+        if(!errors.hasErrors() && passwordMatchUser) {
+            return "redirect: chore/home";
+        }
+        return "login/login";
     }
     @RequestMapping(value="registration", method = RequestMethod.GET)
     public String registerCleaner (Model model) {
@@ -58,7 +64,7 @@ public class LoginController {
 
             loginDao.save(cleaner);
 
-            return "/chore/home";
+            return "redirect: chore/home";
         }
 
         return "/login/registration ";

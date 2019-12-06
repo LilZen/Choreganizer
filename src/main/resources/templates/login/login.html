@@ -7,18 +7,19 @@
 
 <p>Not a Choreganizer? <a href="login/registration">Register here!</a></p>
 
-<form method="post">
+<form method="post" th:object="${login}">
     <div class="form-group">
-        <label for="cleaner">cleaner name:
-            <input type="text" id="cleaner" required>
-        </label>
+        <label for="cleaner">cleaner name:</label>
+        <input class="form-control" type="text" th:field="*{cleaner}" id="cleaner" required>
+        <span th:errors="*{cleaner}" class="error"></span>
     </div>
 
     <div class="form-group">
-        <label for="password">Password:
-            <input type="password" id="password" required>
-        </label>
+        <label for="password">Password:</label>
+        <input class="form-control" type="password" th:field="*{password}" id="password" required>
+        <span th:errors="*{password}" class="error"></span>
     </div>
+
     <input type="submit" value="Choreganize!">
 </form>
 

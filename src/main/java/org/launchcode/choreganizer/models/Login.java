@@ -12,7 +12,7 @@ public class Login {
     private int Id;
 
     @NotNull
-    @Size(min= 5, max= 15)
+    @Size(min= 4, max= 15, message= "cleaner name must be between")
     private String cleaner;
 
     @NotNull
