@@ -26,5 +26,19 @@
 
 </table>
 
+<hr />
+
+<h1>Completed</h1>
+
+<table class="table">
+
+    <tr th:each="chore : ${chores}">
+        <td th:text="${chore.choreName}"></td>
+        <td th:text="${chore.cleaner}"></td>
+        <td th:text="${chore.dueDate}"></td>
+    </tr>
+
+</table>
+
 </body>
 </html>

@@ -2,7 +2,7 @@ package org.launchcode.choreganizer.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.util.Calendar;
 
 @Entity
 public class Chore {
@@ -15,14 +15,14 @@ public class Chore {
     private String choreName;
 
     @NotNull
-    private Date dueDate;
+    private Calendar dueDate;
 
     @ManyToOne
     private Login cleaner;
 
     public Chore() {}
 
-    public Chore (String choreName, Date dueDate){
+    public Chore (String choreName, Calendar dueDate){
         this.choreName = choreName;
         this.dueDate = dueDate;
     }
@@ -33,11 +33,11 @@ public class Chore {
 
     public void setChoreName(Chore choreName) { this.choreName = this.choreName; }
 
-    public Date getDueDate() {
+    public @NotNull Calendar getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(@NotNull Calendar dueDate) {
         this.dueDate = dueDate;
     }
 
