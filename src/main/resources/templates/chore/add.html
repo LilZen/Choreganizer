@@ -24,13 +24,22 @@
     <div class="form-group">
         <select th:name="cleanerId" required>
             <option value="add" selected disabled hidden>Select a Cleaner</option>
-            <option th:each="cleaner : ${cleaners}"
-                    th:text="*{cleaner.cleanerName}"
-                    th:value="${cleaner.id}">
-
-            </option>
+            <option>Mom </option>
+            <option>Dad </option>
+            <option>Lil </option>
+            <option>Zen </option>
         </select>
     </div>
+        <!--    <div class="form-group">-->
+<!--        <select th:name="${cleanerId}" required>-->
+<!--            <option value="add" selected disabled hidden>Select a Cleaner</option>-->
+<!--            <option th:each="cleaner : ${cleaners}"-->
+<!--                    th:text="*{cleaner.cleanerName}"-->
+<!--                    th:value="${cleaner.id}">-->
+
+<!--            </option>-->
+<!--        </select>-->
+<!--    </div>-->
 
     <div class="form-group">
         <input type="date" name="dueDate">

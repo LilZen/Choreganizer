@@ -39,11 +39,12 @@ public class ChoreController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String displayAddChore(@ModelAttribute @Valid Chore newChore, Errors errors, @RequestParam int Id, Model model) {
+    public String displayAddChore(@ModelAttribute @Valid Chore newChore, Errors errors, Model model) {
+
+        model.addAttribute(newChore);
 
         if(errors.hasErrors()) {
             model.addAttribute("title", "Add Chore");
-
             return "chore/add";
         }
 
