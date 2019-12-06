@@ -18,7 +18,7 @@
         <th onclick="sortTable(2)">Completion Day</th>
     </tr>
 
-    <tr th:each="chore : ${chores}">
+    <tr type=checkbox th:each="chore : ${chores}">
         <td th:text="${chore.choreName}"></td>
         <td th:text="${chore.cleaner}"></td>
         <td th:text="${chore.dueDate}"></td>
@@ -30,15 +30,15 @@
 
 <h1>Completed</h1>
 
-<table class="table">
+<!--<table class="table">-->
 
-    <tr th:each="chore : ${chores}">
-        <td th:text="${chore.choreName}"></td>
-        <td th:text="${chore.cleaner}"></td>
-        <td th:text="${chore.dueDate}"></td>
-    </tr>
+<!--    <tr th:each="chore : ${chores}">-->
+<!--        <td th:text="${chore.choreName}"></td>-->
+<!--        <td th:text="${chore.cleaner}"></td>-->
+<!--        <td th:text="${chore.dueDate}"></td>-->
+<!--    </tr>-->
 
-</table>
+<!--</table>-->
 
 </body>
 </html>

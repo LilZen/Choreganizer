@@ -1,9 +1,7 @@
 package org.launchcode.choreganizer.controllers;
 
 import org.launchcode.choreganizer.models.Chore;
-import org.launchcode.choreganizer.models.Login;
 import org.launchcode.choreganizer.models.data.ChoreDao;
-import org.launchcode.choreganizer.models.data.LoginDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,5 +50,15 @@ public class ChoreController {
         choreDao.save(newChore);
         return "chore/add";
 
+    }
+
+    @RequestMapping(value = " ", method = RequestMethod.POST)
+    public String processRemoveChore(@RequestParam int[] ids) {
+
+        for (int id : ids) {
+            choreDao.deleteById(id);
+        }
+
+        return "redirect:";
     }
 }
