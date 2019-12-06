@@ -57,7 +57,7 @@ public class LoginController {
                 || !cleaner.getPassword().equals(verifyPassword)) {
             passwordsMatch = false;
             cleaner.setPassword(" ");
-            model.addAttribute(verifyPassword, "Passwords must match");
+            model.addAttribute("verifyError", "Passwords must match");
         }
 
         if (!errors.hasErrors() && passwordsMatch) {
