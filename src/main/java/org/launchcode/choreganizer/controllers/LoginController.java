@@ -38,7 +38,7 @@ public class LoginController {
         }
 
         if(!errors.hasErrors() && passwordMatchUser) {
-            return "redirect: chore/home";
+            return "/chore/home";
         }
         return "login/login";
     }
@@ -64,7 +64,7 @@ public class LoginController {
 
             loginDao.save(cleaner);
 
-            return "redirect: chore/home";
+            return "/chore/home";
         }
 
         return "/login/registration ";
