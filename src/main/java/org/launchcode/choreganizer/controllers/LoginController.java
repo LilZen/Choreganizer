@@ -33,7 +33,7 @@ public class LoginController {
         boolean passwordMatchUser = true;
         if(!cleaner.getPassword().equals(password)) {
             passwordMatchUser = false;
-            model.addAttribute(password, "Invalid cleaner or password");
+            model.addAttribute("password", "Invalid cleaner or password");
 
         }
 

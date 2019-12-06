@@ -12,11 +12,11 @@ public class Login {
     private int Id;
 
     @NotNull
-    @Size(min= 4, max= 15, message= "cleaner name must be between")
+    @Size(min= 4, max= 15, message= "Invalid cleaner")
     private String cleaner;
 
     @NotNull
-    @Size(min=8, max= 25, message = "Password must be between 8 and 25 characters")
+    @Size(min=8, max= 25, message = "Invalid password")
     private String password;
 
     @NotNull(message = "Passwords do not match")
