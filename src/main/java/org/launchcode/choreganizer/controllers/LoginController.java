@@ -23,21 +23,18 @@ public class LoginController {
     public String getLoginCleaner(Model model) {
         model.addAttribute(new Login());
         model.addAttribute("title", "Login");
-            return "login/login";
+        return "login/login";
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String verifyLoginCleaner(@Valid Login cleaner, Errors errors, String password, Model model) {
+    public String verifyLoginCleaner(Model model, @Valid Login cleaner, String password, Errors error) {
 
-        model.addAttribute(cleaner);
-        boolean passwordMatchUser = true;
+        model.addAttribute("cleaner", loginDao.findAll());
         if(!cleaner.getPassword().equals(password)) {
-            passwordMatchUser = false;
             model.addAttribute("password", "Invalid cleaner or password");
-
         }
 
-        if(!errors.hasErrors() && passwordMatchUser) {
+        if(!error.hasErrors()){
             return "/chore/home";
         }
         return "login/login";
@@ -49,19 +46,11 @@ public class LoginController {
         return "login/registration";
     }
     @RequestMapping(value = "registration", method = RequestMethod.POST)
-        public String verifyRegisterCleaner(Model model, @ModelAttribute @Valid Login cleaner, Errors errors, String verifyPassword) {
+        public String verifyRegisterCleaner(Model model, @ModelAttribute @Valid Login cleaner, Errors errors) {
 
         model.addAttribute(cleaner);
-        boolean passwordsMatch = true;
-        if (cleaner.getPassword() == null || verifyPassword == null
-                || !cleaner.getPassword().equals(verifyPassword)) {
-            passwordsMatch = false;
-            cleaner.setPassword(" ");
-            model.addAttribute("verifyError", "Passwords must match");
-        }
 
-        if (!errors.hasErrors() && passwordsMatch) {
-
+        if (!errors.hasErrors()) {
             loginDao.save(cleaner);
 
             return "/chore/home";

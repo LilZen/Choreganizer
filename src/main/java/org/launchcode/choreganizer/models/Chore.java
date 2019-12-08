@@ -1,6 +1,7 @@
 package org.launchcode.choreganizer.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import java.util.Calendar;
 
@@ -15,6 +16,7 @@ public class Chore {
     private String choreName;
 
     @NotNull
+    @Future
     private Calendar dueDate;
 
     @ManyToOne
