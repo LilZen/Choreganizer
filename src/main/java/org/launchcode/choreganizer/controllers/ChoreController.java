@@ -20,46 +20,30 @@ public class ChoreController {
     @Autowired
     ChoreDao choreDao;
 
-    @RequestMapping(value="")
-    public String findChore(Model model){
+    @RequestMapping(value="", method = RequestMethod.GET)
+    public String home(Model model, @RequestParam(defaultValue = "0") int id){
 
-        model.addAttribute("chores", choreDao.findAll());
         model.addAttribute("title", "Chores");
-
+        model.addAttribute("chores", choreDao.findAll());
         return "chore/home";
     }
 
     @RequestMapping(value="add", method = RequestMethod.GET)
-    public String displayAddChore(Model model){
-
-        model.addAttribute("title", "Add Chore");
+    public String addChore(Model model){
         model.addAttribute(new Chore());
-        model.addAttribute("chores", choreDao.findAll());
+        model.addAttribute("title", "Add Chore");
         return "chore/add";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String displayAddChore(@ModelAttribute @Valid Chore newChore, Errors errors, Model model) {
-
-        model.addAttribute(newChore);
+    public String addChore(Model model, @ModelAttribute @Valid Chore chore, Errors errors) {
 
         if(errors.hasErrors()) {
             model.addAttribute("title", "Add Chore");
             return "chore/add";
         }
 
-        choreDao.save(newChore);
+        choreDao.save(chore);
         return "chore/add";
-
-    }
-
-    @RequestMapping(value = " ", method = RequestMethod.POST)
-    public String processRemoveChore(@RequestParam int[] ids) {
-
-        for (int id : ids) {
-            choreDao.deleteById(id);
-        }
-
-        return "redirect:";
     }
 }
