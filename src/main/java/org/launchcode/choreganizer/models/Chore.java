@@ -3,7 +3,11 @@ package org.launchcode.choreganizer.models;
 import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.lang.ref.Cleaner;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 @Entity
 public class Chore {
@@ -13,20 +17,17 @@ public class Chore {
     private int id;
 
     @NotNull
+    @Size(min=3, max=30)
     private String choreName;
-
-    @NotNull
-    @Future
-    private Calendar dueDate;
-
-    @ManyToOne
-    private Login cleaner;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "chore_id")
+//    private List<Cleaner> cleaners = new ArrayList<>();
 
     public Chore() {}
 
-    public Chore (String choreName, Calendar dueDate){
+    public Chore (String choreName){
         this.choreName = choreName;
-        this.dueDate = dueDate;
     }
 
     public int getId() { return id; }
@@ -34,20 +35,6 @@ public class Chore {
     public String getChoreName() { return choreName; }
 
     public void setChoreName(Chore choreName) { this.choreName = this.choreName; }
-
-    public @NotNull Calendar getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(@NotNull Calendar dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public Login getCleaner() {
-        return cleaner;
-    }
-
-    public void setCleaner(Login cleaner) {
-        this.cleaner = cleaner;
-    }
+//
+//    public List<Cleaner> getCleaners() { return cleaners; }
 }

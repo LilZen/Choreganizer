@@ -12,14 +12,14 @@
 
 <table class="table">
 
-    <tr>
-        <th onclick="sortTable(0)">Chore</th>
-        <th onclick="sortTable(1)">Cleaner</th>
-        <th onclick="sortTable(2)">Completion Day</th>
-    </tr>
+<!--    <tr>-->
+<!--        <th onclick="sortTable(0)">Chore</th>-->
+<!--        <th onclick="sortTable(1)">Cleaner</th>-->
+<!--        <th onclick="sortTable(2)">Completion Day</th>-->
+<!--    </tr>-->
 
-    <tr type="checkbox" th:each="chore : ${chores}">
-        <td th:text="${chore.choreName}"></td>
+    <tr type="checkbox" name="ids" th:each="chore : ${chores}" th:id="${chore.id}">
+        <td th:for="${chore.id}" th:text="${chore.choreName}"></td>
         <td th:text="${chore.cleaner}"></td>
         <td th:text="${chore.dueDate}"></td>
     </tr>

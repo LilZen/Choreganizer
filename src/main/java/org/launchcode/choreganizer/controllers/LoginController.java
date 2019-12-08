@@ -27,10 +27,10 @@ public class LoginController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String verifyLoginCleaner(Model model, @Valid Login cleaner, String password, Errors error) {
+    public String verifyLoginCleaner(Model model, @Valid Login id, String password, Errors error) {
 
-        model.addAttribute("cleaner", loginDao.findAll());
-        if(!cleaner.getPassword().equals(password)) {
+        model.addAttribute("id", loginDao.findAll());
+        if(!id.getPassword().equals(password)) {
             model.addAttribute("password", "Invalid cleaner or password");
         }
 

@@ -10,17 +10,14 @@
 
 <h1 th:text="${title}">Default Title</h1>
 
-<form action="add" method="post" th:object="${chore}">
+<form method="post" th:object="${cleaner}">
     <div class="form-group">
         <label th:for="name">Name</label>
-        <input class="form-control" th:field="*{choreName}"/>
-        <span th:errors="*{choreName}" class="error"></span>
+        <input class="form-control" th:field="*{name}" />
+        <span th:errors="*{name}" class="error"></span>
     </div>
 
-    <input type="submit" value="Add Chore">
-
-    <input type="submit" value="Add Chore" />
-
+    <input type="submit" value="Add Cleaner" />
 </form>
 
 </body>
