@@ -9,4 +9,5 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public interface LoginDao extends CrudRepository<Login, String> {
+    Login findByUser(String user);
 }
