@@ -12,30 +12,30 @@ public class Login {
     private int Id;
 
     @NotNull
-    @Size(min= 4, max= 15, message= "Invalid cleaner")
-    private String cleaner;
+    @Size(min= 4, max= 15, message= "Invalid user")
+    private String user;
 
     @NotNull
     @Size(min=8, max= 25, message = "Invalid password")
     private String password;
 
-    @NotNull(message = "Passwords do not match")
+    @NotNull
     @Transient
     private String verifyPassword;
 
-    public Login(String cleaner, String password) {
-        this.cleaner = cleaner;
+    public Login(String user, String password) {
+        this.user = user;
         this.password = password;
     }
 
     public Login() {}
 
-    public String getCleaner() {
-        return cleaner;
+    public String getUser() {
+        return user;
     }
 
-    public void setCleaner(String cleaner) {
-        this.cleaner = cleaner;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getPassword() {

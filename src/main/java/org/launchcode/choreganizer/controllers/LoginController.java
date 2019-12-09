@@ -20,14 +20,14 @@ public class LoginController {
     LoginDao loginDao;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String getLoginCleaner(Model model) {
+    public String getLoginUser(Model model) {
         model.addAttribute(new Login());
         model.addAttribute("title", "Login");
         return "login/login";
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String verifyLoginCleaner(Model model, @Valid Login id, String password, Errors error) {
+    public String verifyLoginUser(Model model, @Valid Login id, String password, Errors error) {
 
         model.addAttribute("id", loginDao.findAll());
         if(!id.getPassword().equals(password)) {
@@ -40,18 +40,18 @@ public class LoginController {
         return "login/login";
     }
     @RequestMapping(value="registration", method = RequestMethod.GET)
-    public String registerCleaner (Model model) {
+    public String registerUser (Model model) {
         model.addAttribute((new Login()));
         model.addAttribute("title", "Register");
         return "login/registration";
     }
     @RequestMapping(value = "registration", method = RequestMethod.POST)
-        public String verifyRegisterCleaner(Model model, @ModelAttribute @Valid Login cleaner, Errors errors) {
+        public String verifyRegisterUser(Model model, @ModelAttribute @Valid Login user, Errors errors) {
 
-        model.addAttribute(cleaner);
+        model.addAttribute(user);
 
         if (!errors.hasErrors()) {
-            loginDao.save(cleaner);
+            loginDao.save(user);
 
             return "/chore/home";
         }

@@ -23,7 +23,7 @@ public class Cleaner {
 
     public Cleaner() {}
 
-    public Cleaner (String name){ this.name = name; }
+    public Cleaner(String name){ this.name = name; }
 
     public int getId() {
         return id;

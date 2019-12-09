@@ -9,9 +9,9 @@
 
 <form method="post" th:object="${login}">
     <div class="form-group">
-        <label for="cleaner">cleaner name:</label>
-        <input class="form-control" type="text" th:field="*{cleaner}" id="cleaner" required>
-        <span th:errors="*{cleaner}" class="error"></span>
+        <label for="user">user name:</label>
+        <input class="form-control" type="text" th:field="*{user}" id="user" required>
+        <span th:errors="*{user}" class="error"></span>
     </div>
 
     <div class="form-group">
