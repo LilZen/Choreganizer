@@ -12,9 +12,26 @@
 
 <form action="add" method="post" th:object="${chore}">
     <div class="form-group">
-        <label th:for="name">Name</label>
-        <input class="form-control" th:field="*{choreName}"/>
-        <span th:errors="*{choreName}" class="error"></span>
+        <label th:for="choreName">Chore Name</label>
+        <select th:name="choreId">
+            <option th:each="chore : ${chores}"
+                    th:text="${chore.choreName}"
+                    th:value="${chore.id}"></option>
+    </div>
+
+    <div class="form-group">
+        <label th:for="name">Cleaner Name</label>
+        <select th:name="cleanerId">
+            <option th:each="cleaner : ${cleaners}"
+                    th:text="${cleaner.name}"
+                    th:value="${cleaner.id}"></option>
+        </select>
+    </div>
+
+    <div cclass="form-group">
+        <label th:for="date">Goal Completion Date</label>
+        <input class="form-control" th:field="*{date}" />
+        <span th:errors="*{date}" class="error"></span>
     </div>
 
         <!--    <div class="form-group">-->
@@ -32,7 +49,7 @@
 <!--        <input type="date" name="dueDate">-->
 <!--    </div>-->
 
-    <input type="submit" value="Add Chore">
+    <input type="submit" value="Choreganize">
 
 </form>
 

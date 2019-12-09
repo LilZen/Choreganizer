@@ -18,15 +18,18 @@
 <!--        <th onclick="sortTable(2)">Completion Day</th>-->
 <!--    </tr>-->
 
-    <tr type="checkbox" name="ids" th:each="chore : ${chores}" th:id="${chore.id}">
-        <td th:for="${chore.id}" th:text="${chore.choreName}"></td>
-        <td th:text="${chore.cleaner}"></td>
-        <td th:text="${chore.dueDate}"></td>
-    </tr>
+    <form method="post">
+
+        <div th:each="chore : ${chores}" class="checkbox">
+            <input type="checkbox" name="ids" th:value="${chore.id}" th:id="${chore.id}"/>
+            <label th:for="${chore.id}" th:text="${chore.choreName}"></label>
+            <br />
+        </div>
+
+        <input type="submit" value="Remove Chore" />
+    </form>
 
     <input type="submit" value="Completed" />
-
-    <input type="submit" value="Delete" />
 
 </table>
 

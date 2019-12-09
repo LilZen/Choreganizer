@@ -34,6 +34,24 @@ public class ChoreController {
         return "chore/home";
     }
 
+    @RequestMapping(value = "create", method = RequestMethod.GET)
+    public String add(Model model) {
+        model.addAttribute(new Chore());
+        model.addAttribute("title", "Create Chore");
+        return "chore/create";
+    }
+
+    @RequestMapping(value = "create", method = RequestMethod.POST)
+    public String add(Model model, @ModelAttribute @Valid Chore chore, Errors errors) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Create Chore");
+            return "chore/create";
+        }
+        choreDao.save(chore);
+        return "redirect:";
+    }
+
     @RequestMapping(value="add", method = RequestMethod.GET)
     public String displayAddChore(Model model){
         model.addAttribute(new Chore());
@@ -57,15 +75,15 @@ public class ChoreController {
         return "redirect:";
     }
 
-    @RequestMapping(value = "remove", method = RequestMethod.GET)
+    @RequestMapping(value = " ", method = RequestMethod.GET)
     public String displayRemoveChore(Model model){
 
         model.addAttribute("chores", choreDao.findAll());
         model.addAttribute("title", "Remove Chore");
-        return "chore/remove";
+        return "chore/home";
     }
 
-    @RequestMapping(value = "remove", method = RequestMethod.POST)
+    @RequestMapping(value = " ", method = RequestMethod.POST)
     public String processRemoveChore(@RequestParam int[] ids) {
 
         for (int id : ids) {
