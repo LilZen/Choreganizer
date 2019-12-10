@@ -14,9 +14,19 @@
     <div class="form-group">
         <label th:for="choreName">Chore Name</label>
         <select th:name="choreId">
-            <option th:each="chore : ${chores}"
-                    th:text="${chore.choreName}"
-                    th:value="${chore.id}"></option>
+            <option>Dishes</option>
+            <option>Laundry</option>
+            <option>Bedroom</option>
+            <option>Living Room</option>
+            <option>Dining Room</option>
+            <option>Set Table</option>
+            <option>Sweep floors</option>
+            <option>Mop floors</option>
+            <option>Vacuum floors</option>
+            <option>Kitchen</option>
+<!--            <option th:each="chore : ${chores}"-->
+<!--                    th:text="${chore.choreName}"-->
+<!--                    th:value="${chore.id}"></option>-->
         </select>
     </div>
 
@@ -29,22 +39,11 @@
         </select>
     </div>
 
-    <div cclass="form-group">
-        <label th:for="date">Goal Completion Date</label>
-        <input class="form-control" th:field="*{date}" />
+    <div class="form-group">
+        <label for="date">Goal Completion Date</label>
+        <input class="form-control" id="date" th:field="*{date}" />
         <span th:errors="*{date}" class="error"></span>
     </div>
-
-        <!--    <div class="form-group">-->
-<!--        <select th:name="${cleanerId}" required>-->
-<!--            <option value="add" selected disabled hidden>Select a Cleaner</option>-->
-<!--            <option th:each="cleaner : ${cleaners}"-->
-<!--                    th:text="*{cleaner.cleanerName}"-->
-<!--                    th:value="${cleaner.id}">-->
-
-<!--            </option>-->
-<!--        </select>-->
-<!--    </div>-->
 
 <!--    <div class="form-group">-->
 <!--        <input type="date" name="dueDate">-->
