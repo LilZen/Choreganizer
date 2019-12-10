@@ -14,6 +14,7 @@
     <div class="form-group">
         <label th:for="choreName">Chore Name</label>
         <select th:name="choreId">
+            <option value="chore" selected disabled hidden>Select a Chore</option>
             <option>Dishes</option>
             <option>Laundry</option>
             <option>Bedroom</option>
@@ -33,6 +34,7 @@
     <div class="form-group">
         <label th:for="name">Cleaner Name</label>
         <select th:name="cleanerId">
+            <option value="cleaner" selected disabled hidden>Select a Cleaner</option>
             <option th:each="cleaner : ${cleaners}"
                     th:text="${cleaner.name}"
                     th:value="${cleaner.id}"></option>
@@ -40,14 +42,21 @@
     </div>
 
     <div class="form-group">
-        <label for="date">Goal Completion Date</label>
-        <input class="form-control" id="date" th:field="*{date}" />
-        <span th:errors="*{date}" class="error"></span>
-    </div>
+        <label th:for="date">Goal Completion Date</label>
+<!--        <input class="form-control" th:name="date" th:field="*{date}" />-->
+<!--        <span th:errors="*{date}" class="error"></span>-->
+        <select th:name="date">
+            <option value="date" selected disabled hidden>Select a due day</option>
+            <option value="Sunday">Sunday</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+        </select>
 
-<!--    <div class="form-group">-->
-<!--        <input type="date" name="dueDate">-->
-<!--    </div>-->
+    </div>
 
     <input type="submit" value="Choreganize">
 
