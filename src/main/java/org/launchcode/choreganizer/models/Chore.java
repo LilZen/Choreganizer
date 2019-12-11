@@ -3,7 +3,6 @@ package org.launchcode.choreganizer.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Calendar;
 
 @Entity
 public class Chore {
@@ -13,30 +12,34 @@ public class Chore {
     private int id;
 
     @NotNull
-    @Size(min=3, max=30)
+    @Size(min=3, max=100, message="Chore name must be between 3-100 characters")
     private String choreName;
 
     @NotNull
-    private Calendar date;
+    @Size(min=1, message="Date cannot be empty")
+    private String date;
 
     @ManyToOne
     private Cleaner cleaner;
 
-    public Chore() {}
-
-    public Chore (String choreName){
+    public Chore (String choreName, String date){
         this.choreName = choreName;
+        this.date = date;
     }
+
+    public Chore() {}
 
     public int getId() { return id; }
 
     public String getChoreName() { return choreName; }
 
-    public void setChoreName(Chore choreName) { this.choreName = this.choreName; }
+    public void setChoreName(String choreName) { this.choreName = this.choreName; }
 
-    public Calendar getDate() { return date; }
+    public String getDate() {
+        return date;
+    }
 
-    public void setDate(Calendar date) { this.date = date; }
+    public void setDate(String date) { this.date = date; }
 
     public Cleaner getCleaner() { return cleaner; }
 
