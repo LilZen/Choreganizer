@@ -12,8 +12,7 @@ public class Chore {
     private int id;
 
     @NotNull
-    @Size(min=3, max=100, message="Chore name must be between 3-100 characters")
-    private String choreName;
+    private String name;
 
     @NotNull
     @Size(min=1, message="Date cannot be empty")
@@ -22,8 +21,8 @@ public class Chore {
     @ManyToOne
     private Cleaner cleaner;
 
-    public Chore (String choreName, String date){
-        this.choreName = choreName;
+    public Chore (String name, String date){
+        this.name = name;
         this.date = date;
     }
 
@@ -31,9 +30,9 @@ public class Chore {
 
     public int getId() { return id; }
 
-    public String getChoreName() { return choreName; }
+    public String getName() { return name; }
 
-    public void setChoreName(String choreName) { this.choreName = this.choreName; }
+    public void setName(String name) { this.name = name; }
 
     public String getDate() {
         return date;
