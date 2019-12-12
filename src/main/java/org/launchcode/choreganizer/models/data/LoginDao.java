@@ -8,6 +8,6 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public interface LoginDao extends CrudRepository<Login, String> {
+public interface LoginDao extends CrudRepository<Login, Integer> {
     Login findByUser(String user);
 }

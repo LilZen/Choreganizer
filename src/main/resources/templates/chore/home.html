@@ -8,39 +8,37 @@
 <nav th:replace="fragments :: nav"></nav>
 <h1 th:text="${title}">Default Title</h1>
 
-<p th:uless="${chores} and ${chores.size()}">HOORAY!! Chores are completed! <a href="chore/add">You can add chores here.</a> </p>
+<p th:unless="${chores} and ${chores.size()}">HOORAY!! Chores are completed! <a href="/chore/add">You can add chores here.</a> </p>
 
-<!--    <tr>-->
-<!--        <th onclick="sortTable(0)">Chore</th>-->
-<!--        <th onclick="sortTable(1)">Cleaner</th>-->
-<!--        <th onclick="sortTable(2)">Completion Day</th>-->
-<!--    </tr>-->
 
 <table class="table">
-
     <tr>
         <th>Chore</th>
         <th>Cleaner</th>
-        <th>Goal Completion Date</th>
+        <th>Completion Day</th>
     </tr>
 
     <tr th:each="chore : ${chores}">
-        <td th:text="${chore.choreName}"></td>
-        <td th:text="${chore.cleaner}"></td>
+        <td th:text="${chore.name}"></td>
+        <td th:text="${chore.cleaner.name}"></td>
         <td th:text="${chore.date}"></td>
     </tr>
 
+    <tr>
+        <td>
+        <a href="/chore/delete">Remove</a>
+        </td>
+    </tr>
+
 </table>
+<hr />
 
-    <input type="submit" value="Completed" />
-    <input type="submit" value="Delete" href="/chore/delete" />
-
-<h1>Completed</h1>
+<!--<h1>Completed</h1>-->
 
 <!--<table class="table">-->
 
 <!--    <tr th:each="chore : ${chores}">-->
-<!--        <td th:text="${chore.choreName}"></td>-->
+<!--        <td th:text="${chore.name}"></td>-->
 <!--        <td th:text="${chore.cleaner}"></td>-->
 <!--        <td th:text="${chore.date}"></td>-->
 <!--        <td th:text="${chore.id}" hidden></td>-->

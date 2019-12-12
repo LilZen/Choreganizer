@@ -9,35 +9,39 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
 @Controller
 @RequestMapping("login")
-public class LoginController {
+public class LoginController{
 
     @Autowired
     LoginDao loginDao;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getLoginUser(Model model) {
-        model.addAttribute(new Login());
+       // model.addAttribute(new Login());
         model.addAttribute("title", "Login");
         return "login/login";
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String verifyLoginUser(Model model, @Valid Login id, String password, Errors error) {
+    public String verifyLoginUser(Model model, @RequestParam String username, @RequestParam String password) {
 
         model.addAttribute("id", loginDao.findAll());
-        if(!id.getPassword().equals(password)) {
-            model.addAttribute("password", "Invalid cleaner or password");
-        }
-
-        if(!error.hasErrors()){
+        Login foundUser = loginDao.findByUser(username);
+        if (password.equals(foundUser.getPassword()))
+        {
             return "/chore/home";
+
         }
-        return "login/login";
+        else {
+            // this attribute might need to be changed passworderr
+            model.addAttribute("password", "Invalid cleaner or password");
+            return "login/login";
+        }
     }
     @RequestMapping(value="registration", method = RequestMethod.GET)
     public String registerUser (Model model) {

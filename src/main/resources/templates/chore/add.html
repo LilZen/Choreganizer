@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
 <head th:replace=" fragments :: head"></head>
 
-<body class="container">
+<body>
 
 <heading th:replace="fragments :: heading"></heading>
 
@@ -10,31 +10,17 @@
 
 <h1 th:text="${title}">Default Title</h1>
 
-<form action="add" method="post" th:object="${chore}">
+<form method="post" th:object="${chore}">
+
     <div class="form-group">
-        <label th:for="choreName">Chore Name</label>
-        <select th:name="choreId">
-            <option value="chore" selected disabled hidden>Select a Chore</option>
-            <option>Dishes</option>
-            <option>Laundry</option>
-            <option>Bedroom</option>
-            <option>Living Room</option>
-            <option>Dining Room</option>
-            <option>Set Table</option>
-            <option>Sweep floors</option>
-            <option>Mop floors</option>
-            <option>Vacuum floors</option>
-            <option>Kitchen</option>
-<!--            <option th:each="chore : ${chores}"-->
-<!--                    th:text="${chore.choreName}"-->
-<!--                    th:value="${chore.id}"></option>-->
-        </select>
+        <label th:for="name">Chore</label>
+        <input class="form-control" th:field="*{name}"/>
+        <span th:errors="*{name}" class="error"></span>
     </div>
 
     <div class="form-group">
-        <label th:for="name">Cleaner Name</label>
+        <label th:for="user">Cleaner</label>
         <select th:name="cleanerId">
-            <option value="cleaner" selected disabled hidden>Select a Cleaner</option>
             <option th:each="cleaner : ${cleaners}"
                     th:text="${cleaner.name}"
                     th:value="${cleaner.id}"></option>
@@ -42,11 +28,8 @@
     </div>
 
     <div class="form-group">
-        <label th:for="date">Goal Completion Date</label>
-<!--        <input class="form-control" th:name="date" th:field="*{date}" />-->
-<!--        <span th:errors="*{date}" class="error"></span>-->
+        <label th:for="date">Due Date</label>
         <select th:name="date">
-            <option value="date" selected disabled hidden>Select a due day</option>
             <option value="Sunday">Sunday</option>
             <option value="Monday">Monday</option>
             <option value="Tuesday">Tuesday</option>
@@ -55,10 +38,9 @@
             <option value="Friday">Friday</option>
             <option value="Saturday">Saturday</option>
         </select>
-
     </div>
 
-    <input type="submit" value="Choreganize">
+    <input type="submit" value="Add Chore" />
 
 </form>
 

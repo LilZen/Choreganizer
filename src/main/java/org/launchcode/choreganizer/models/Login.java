@@ -3,6 +3,8 @@ package org.launchcode.choreganizer.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Login {
@@ -12,16 +14,20 @@ public class Login {
     private int Id;
 
     @NotNull
-    @Size(min= 4, max= 15, message= "Invalid user")
+    @Size(min= 4, max= 15, message= "Must enter username")
     private String user;
 
     @NotNull
-    @Size(min=8, max= 25, message = "Invalid password")
+    @Size(min=8, max= 25, message = "Password must be between 8-25 characters")
     private String password;
 
     @NotNull
     @Transient
     private String verifyPassword;
+
+    @OneToMany
+    @JoinColumn(name = "owner_id")
+    private List<Chore> chores = new ArrayList<>();
 
     public Login(String user, String password) {
         this.user = user;
@@ -55,6 +61,8 @@ public class Login {
         this.verifyPassword = verifyPassword;
         checkPassword();
     }
+
+    public List<Chore> getChores() { return chores; }
 
     private void checkPassword() {
         if (password != null && verifyPassword != null

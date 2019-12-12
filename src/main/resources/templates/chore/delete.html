@@ -13,12 +13,12 @@
 <form method="post">
 
     <div th:each="chore : ${chores}" class="checkbox">
-        <input type="checkbox" name="ids" th:value="${chore.id} th:id=${chore.id}" />
-        <label th:for="${chore.id}" th:text="${chore.choreName}"></label>
+        <input type="checkbox" name="ids" th:value="${chore.id}" th:id="${chore.id}" />
+        <label th:for="${chore.id}" th:text="${chore.name}"></label>
         <br />
     </div>
 
-    <input type="submit" value="Delete" />
+    <input type="submit" value="Delete Chore" />
 </form>
 
 </body>

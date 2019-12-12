@@ -2,6 +2,7 @@ package org.launchcode.choreganizer.controllers;
 
 import org.launchcode.choreganizer.models.Chore;
 import org.launchcode.choreganizer.models.Cleaner;
+import org.launchcode.choreganizer.models.Login;
 import org.launchcode.choreganizer.models.data.ChoreDao;
 import org.launchcode.choreganizer.models.data.CleanerDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "chore")
-public class ChoreController {
+public class ChoreController{
 
     @Autowired
     ChoreDao choreDao;
@@ -26,42 +27,24 @@ public class ChoreController {
     @Autowired
     CleanerDao cleanerDao;
 
-    @RequestMapping(value="", method = RequestMethod.GET)
+    @RequestMapping(value="")
     public String home(Model model){
 
-        model.addAttribute("title", "Chores");
         model.addAttribute("chores", choreDao.findAll());
+        model.addAttribute("title", "Choreganizer");
         return "chore/home";
-    }
-
-    @RequestMapping(value = "create", method = RequestMethod.GET)
-    public String add(Model model) {
-        model.addAttribute(new Chore());
-        model.addAttribute("title", "Create Chore");
-        return "chore/create";
-    }
-
-    @RequestMapping(value = "create", method = RequestMethod.POST)
-    public String add(Model model, @ModelAttribute @Valid Chore chore, Errors errors) {
-
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Create Chore");
-            return "chore/create";
-        }
-        choreDao.save(chore);
-        return "redirect:";
     }
 
     @RequestMapping(value="add", method = RequestMethod.GET)
     public String displayAddChore(Model model){
-        model.addAttribute(new Chore());
         model.addAttribute("title", "Add Chore");
+        model.addAttribute(new Chore());
         model.addAttribute("cleaners", cleanerDao.findAll());
         return "chore/add";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String addChore(@ModelAttribute @Valid Chore newChore, Errors errors, @RequestParam int cleanerId, Model model) {
+    public String processAddCheeseForm(@ModelAttribute @Valid Chore newChore, Errors errors, @RequestParam int cleanerId, Model model) {
 
         if(errors.hasErrors()) {
             model.addAttribute("title", "Add Chore");
@@ -69,21 +52,21 @@ public class ChoreController {
             return "chore/add";
         }
 
-        Cleaner clean = cleanerDao.findById(cleanerId).orElse(null);
+        Cleaner clean  = cleanerDao.findById(cleanerId).orElse(null);
         newChore.setCleaner(clean);
         choreDao.save(newChore);
         return "redirect:";
     }
 
-    @RequestMapping(value = " ", method = RequestMethod.GET)
+    @RequestMapping(value = "delete", method = RequestMethod.GET)
     public String displayRemoveChore(Model model){
 
         model.addAttribute("chores", choreDao.findAll());
-        model.addAttribute("title", "Remove Chore");
-        return "chore/home";
+        model.addAttribute("title", "Delete Chore");
+        return "chore/delete";
     }
 
-    @RequestMapping(value = " ", method = RequestMethod.POST)
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
     public String processRemoveChore(@RequestParam int[] ids) {
 
         for (int id : ids) {
@@ -96,10 +79,10 @@ public class ChoreController {
     @RequestMapping(value = "cleaner", method = RequestMethod.GET)
     public String category(Model model, @RequestParam int id) {
 
-        Cleaner cleaner = cleanerDao.findById(id).orElse(null);
-        List<Chore> chores = cleaner.getChores();
+        Cleaner clean = cleanerDao.findById(id).orElse(null);
+        List<Chore> chores = clean.getChores();
         model.addAttribute("chores", chores);
-        model.addAttribute("title", "Chores for Cleaner: " + cleaner.getName());
+        model.addAttribute("title", "Chores for Cleaner: " + clean.getName());
         return "chore/home";
     }
 }
