@@ -1,8 +1,12 @@
 package org.launchcode.choreganizer.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Pattern;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 public class Chore {
@@ -15,13 +19,12 @@ public class Chore {
     private String name;
 
     @NotNull
-    @Size(min=1, message="Date cannot be empty")
-    private String date;
+    private Date date;
 
     @ManyToOne
     private Cleaner cleaner;
 
-    public Chore (String name, String date){
+    public Chore (String name, Date date){
         this.name = name;
         this.date = date;
     }
@@ -34,11 +37,11 @@ public class Chore {
 
     public void setName(String name) { this.name = name; }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) { this.date = date; }
+    public void setDate(Date date) { this.date = date; }
 
     public Cleaner getCleaner() { return cleaner; }
 
