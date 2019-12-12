@@ -31,7 +31,7 @@ public class ChoreController{
     public String home(Model model){
 
         model.addAttribute("chores", choreDao.findAll());
-        model.addAttribute("title", "Choreganizer");
+        model.addAttribute("title", "Chores");
         return "chore/home";
     }
 
@@ -62,6 +62,7 @@ public class ChoreController{
     public String displayRemoveChore(Model model){
 
         model.addAttribute("chores", choreDao.findAll());
+        model.addAttribute("cleaner", cleanerDao.findAll());
         model.addAttribute("title", "Delete Chore");
         return "chore/delete";
     }
