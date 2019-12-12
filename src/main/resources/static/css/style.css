@@ -1,7 +1,7 @@
 .container {
-    background-color: blue;
+    background-color: lightblue;
 }
 
-.logout {
-    align: right;
+a.logout {
+  text-align: right;
 }
