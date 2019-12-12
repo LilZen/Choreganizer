@@ -10,6 +10,7 @@
 
 <h1 th:text="${title}">Default Title</h1>
 
+<div>
 <form method="post" th:object="${cleaner}">
     <div class="form-group">
         <label th:for="name">Name</label>
@@ -19,6 +20,21 @@
 
     <input type="submit" value="Add Cleaner" />
 </form>
+</div>
+
+<hr />
+
+<h1>Cleaners</h1>
+<div>
+    <ul>
+        <li th:each="cleaner : ${cleaners}">
+            <a th:href="'/chore/cleaner?id=' + ${cleaner.id}" th:text="${cleaner.name}"></a>
+        </li>
+    </ul>
+</div>
+<footer>
+    <a href="/cleaner/delete">Delete Cleaner</a>
+</footer>
 
 </body>
 </html>

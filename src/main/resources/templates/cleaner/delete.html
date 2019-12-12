@@ -10,11 +10,16 @@
 
 <h1 th:text="${title}">Default Title</h1>
 
-<ul>
-    <li th:each="cleaner : ${cleaners}">
-        <a th:href="'/chore/cleaner?id=' + ${cleaner.id}" th:text="${cleaner.name}"></a>
-    </li>
-</ul>
+<form method="post">
+
+    <div th:each="cleaner : ${cleaners}" class="checkbox">
+        <input type="checkbox" name="ids" th:value="${cleaner.id}" th:id="${cleaner.id}" />
+        <label th:for="${cleaner.id}" th:text="${cleaner.name}"></label>
+        <br />
+    </div>
+
+    <input type="submit" value="Delete Cleaner" />
+</form>
 
 </body>
 </html>

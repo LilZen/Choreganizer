@@ -17,15 +17,10 @@ public class CleanerController{
     @Autowired
     private CleanerDao cleanerDao;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public String home(Model model, @RequestParam(defaultValue = "0") int id) {
-        model.addAttribute("title", "Cleaners");
-        model.addAttribute("cleaners", cleanerDao.findAll());
-        return "cleaner/home";
-    }
-
     @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String add(Model model) {
+    public String add(Model model, @RequestParam(defaultValue = "0") int id) {
+
+        model.addAttribute("cleaners", cleanerDao.findAll());
         model.addAttribute(new Cleaner());
         model.addAttribute("title", "Add Cleaner");
         return "cleaner/add";
@@ -36,10 +31,30 @@ public class CleanerController{
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Cleaner");
-            return "cleaner/add";
+            return "/cleaner/add";
         }
 
         cleanerDao.save(cleaner);
-        return "redirect:";
+        return "redirect:add";
     }
+
+
+    @RequestMapping(value = "delete", method = RequestMethod.GET)
+    public String displayRemoveCleaner(Model model){
+
+        model.addAttribute("cleaners", cleanerDao.findAll());
+        model.addAttribute("title", "Delete Cleaner");
+        return "cleaner/delete";
+    }
+
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    public String processRemoveCleaner(@RequestParam int[] ids) {
+
+        for (int id : ids) {
+            cleanerDao.deleteById(id);
+        }
+
+        return "redirect:delete";
+    }
+
 }
