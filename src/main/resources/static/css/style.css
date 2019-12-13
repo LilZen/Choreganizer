@@ -1,7 +1,29 @@
 .container {
-    background-color: lightblue;
+    background-color: rgba(13,152,186,.75);
+}
+
+h1 {
+font-family: 'Satisfy', cursive;
+text-shadow: 2px 2px rgba(0,100,150,.75);
+color: rgba(215,255,215,1);
+}
+
+a {
+color: rgba(150,255,255,1)
 }
 
 a.logout {
   text-align: right;
+}
+
+table {
+  padding:3%;
+  margin:2%;
+  max-width:600px;
+}
+
+form{
+  padding:3%;
+  margin:2%;
+  max-width:600px;
 }
