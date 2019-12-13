@@ -1,6 +1,7 @@
 package org.launchcode.choreganizer.controllers;
 
 import org.launchcode.choreganizer.models.Login;
+import org.launchcode.choreganizer.models.data.ChoreDao;
 import org.launchcode.choreganizer.models.data.LoginDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,28 +21,32 @@ public class LoginController{
     @Autowired
     LoginDao loginDao;
 
+    @Autowired
+    ChoreDao choreDao;
+
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getLoginUser(Model model) {
-       // model.addAttribute(new Login());
+        model.addAttribute(new Login());
         model.addAttribute("title", "Login");
         return "login/login";
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String verifyLoginUser(Model model, @RequestParam String username, @RequestParam String password) {
+    public String verifyLoginUser(@ModelAttribute @Valid Login newUser, Errors errors, Model model){
 
-        model.addAttribute("id", loginDao.findAll());
-        Login foundUser = loginDao.findByUser(username);
-        if (password.equals(foundUser.getPassword()))
-        {
-            return "/chore/home";
-
-        }
-        else {
-            // this attribute might need to be changed passworderr
-            model.addAttribute("password", "Invalid cleaner or password");
+        if(errors.hasErrors()) {
+            model.addAttribute("title", "Choreganizer Sign-In");
             return "login/login";
         }
+
+        Login user = loginDao.findByUser(newUser.getUser());
+        if(user != null && user.getUser().equalsIgnoreCase(newUser.getUser())) {
+            return "/chore/home";
+        }
+
+        model.addAttribute("login", "Invalid Credentials");
+        newUser.setPassword("");
+        return "login/login";
     }
     @RequestMapping(value="registration", method = RequestMethod.GET)
     public String registerUser (Model model) {

@@ -21,9 +21,9 @@ public class Login {
     @Size(min=8, max= 25, message = "Password must be between 8-25 characters")
     private String password;
 
-    @NotNull
-    @Transient
-    private String verifyPassword;
+//    @NotNull
+//    @Transient
+//    private String verifyPassword;
 
     @OneToMany
     @JoinColumn(name = "owner_id")
@@ -50,24 +50,24 @@ public class Login {
 
     public void setPassword(String password) {
         this.password = password;
-        checkPassword();
+//        checkPassword();
     }
-
-    public String getVerifyPassword() {
-        return verifyPassword;
-    }
-
-    public void setVerifyPassword(String verifyPassword) {
-        this.verifyPassword = verifyPassword;
-        checkPassword();
-    }
-
+//
+//    public String getVerifyPassword() {
+//        return verifyPassword;
+//    }
+//
+//    public void setVerifyPassword(String verifyPassword) {
+//        this.verifyPassword = verifyPassword;
+//        checkPassword();
+//    }
+//
     public List<Chore> getChores() { return chores; }
 
-    private void checkPassword() {
-        if (password != null && verifyPassword != null
-                && !password.equals(verifyPassword)) {
-            verifyPassword = null;
-        }
-    }
+//    private void checkPassword() {
+//        if (password != null && verifyPassword != null
+//                && !password.equals(verifyPassword)) {
+//            verifyPassword = null;
+//        }
+//    }
 }
