@@ -24,12 +24,16 @@ table {
   padding:25%;
   margin-left:auto;
   margin-right:auto;
-  max-width:600px;
+
 }
 
-th { background-color: rgba(215,255,215,1); }
+th {
+  background-color: rgba(215,255,215,1);
+}
 
-tr:hover {background-color: rgb(245,245,245);}
+.hover:hover {
+  background-color: rgb(245,245,245);
+}
 
 form{
   padding:3%;
