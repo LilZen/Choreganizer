@@ -6,7 +6,7 @@
 
 <heading th:replace="fragments :: heading"></heading>
 <nav th:replace="fragments :: nav"></nav>
-<h1 th:text="${title}">Default Title</h1>
+<h1 class="title" th:text="${title}">Default Title</h1>
 
 <p th:unless="${chores} and ${chores.size()}">HOORAY!! Chores are completed! <a href="/chore/add">You can add chores here.</a> </p>
 
@@ -18,7 +18,7 @@
         <th>Completion Day</th>
     </tr>
 
-    <tr th:each="chore : ${chores}">
+    <tr class="hover" th:each="chore : ${chores}">
         <td th:text="${chore.name}"></td>
         <td th:text="${chore.cleaner.name}"></td>
         <td th:text="${chore.date}"></td>

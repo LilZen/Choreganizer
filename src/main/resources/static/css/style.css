@@ -24,11 +24,14 @@ table {
   padding:25%;
   margin-left:auto;
   margin-right:auto;
-
 }
 
 th {
   background-color: rgba(215,255,215,1);
+}
+
+tr {
+  bottom-border: none;
 }
 
 .hover:hover {
@@ -41,7 +44,3 @@ form{
   max-width:600px;
   align:center;
 }
-
-.cleaner {
-  float:center;
-  }
