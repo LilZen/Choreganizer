@@ -10,7 +10,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -41,6 +40,8 @@ public class LoginController{
 
         Login user = loginDao.findByUser(newUser.getUser());
         if(user != null && user.getUser().equalsIgnoreCase(newUser.getUser())) {
+            model.addAttribute("chores", choreDao.findAll());
+            model.addAttribute("title", "Chores");
             return "/chore/home";
         }
 
@@ -62,9 +63,14 @@ public class LoginController{
         if (!errors.hasErrors()) {
             loginDao.save(user);
 
+            model.addAttribute("chores", choreDao.findAll());
+            model.addAttribute("title", "Chores");
             return "/chore/home";
         }
 
-        return "/login/registration ";
+        model.addAttribute("registration", "Passwords do not match.");
+        user.setPassword("");
+
+        return "redirect:/login/registration ";
     }
 }

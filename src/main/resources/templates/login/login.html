@@ -9,7 +9,7 @@
 
 <form method="post" th:object="${login}">
     <div class="form-group">
-        <label th:for="user">user name:</label>
+        <label th:for="user">Username:</label>
         <input class="form-control" type="text" th:field="*{user}" required>
         <span th:errors="*{user}" class="error"></span>
     </div>
