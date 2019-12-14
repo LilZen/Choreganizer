@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org/">
 <head th:replace=" fragments :: head"></head>
-<body>
+<body class="container">
 
 <heading th:replace="fragments :: heading"></heading>
 
@@ -9,8 +9,8 @@
 
 <form method="post" th:object="${login}">
     <div class="form-group">
-        <label for="user">user name:</label>
-        <input class="form-control" type="text" th:field="*{user}" id="user" required>
+        <label th:for="user">user name:</label>
+        <input class="form-control" type="text" th:field="*{user}" required>
         <span th:errors="*{user}" class="error"></span>
     </div>
 

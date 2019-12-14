@@ -14,11 +14,11 @@ public class Login {
     private int Id;
 
     @NotNull
-    @Size(min= 4, max= 15, message= "Must enter username")
+    @Size(min= 4, max= 15, message = "Must enter username")
     private String user;
 
     @NotNull
-    @Size(min=8, max= 25, message = "Password must be between 8-25 characters")
+    @Size(min=8, max= 20, message = "Password must be between 8-20 characters")
     private String password;
 
 //    @NotNull
@@ -26,7 +26,7 @@ public class Login {
 //    private String verifyPassword;
 
     @OneToMany
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "login_Id")
     private List<Chore> chores = new ArrayList<>();
 
     public Login(String user, String password) {
