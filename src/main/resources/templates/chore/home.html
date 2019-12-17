@@ -11,11 +11,11 @@
 <p th:unless="${chores} and ${chores.size()}">HOORAY!! Chores are completed! <a href="/chore/add">You can add chores here.</a> </p>
 
 
-<table class="table">
+<table class="table" id="choreganizer">
     <tr>
-        <th>Chore</th>
-        <th>Cleaner</th>
-        <th>Completion Day</th>
+        <th onclick="sortTable(0)">Chore</th>
+        <th onclick="sortTable(1)">Cleaner</th>
+        <th onclick="sortTable(2)">Completion Day</th>
     </tr>
 
     <tr class="hover" th:each="chore : ${chores}">
@@ -24,13 +24,10 @@
         <td th:text="${chore.date}"></td>
     </tr>
 
-    <tr>
-        <td>
-        <a href="/chore/delete">Remove</a>
-        </td>
-    </tr>
-
 </table>
+
+<a class="delete" href="/chore/delete">Delete Chore</a>
+<br />
 <hr />
 
 <!--<h1>Completed</h1>-->
