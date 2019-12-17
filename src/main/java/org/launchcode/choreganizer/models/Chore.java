@@ -1,5 +1,7 @@
 package org.launchcode.choreganizer.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -14,11 +16,15 @@ public class Chore {
     @NotNull
     private String name;
 
+    @Temporal(TemporalType.DATE)
     @NotNull
     private Date date;
 
     @ManyToOne
     private Cleaner cleaner;
+
+    @ManyToOne
+    private Login login;
 
     public Chore (String name, Date date){
         this.name = name;
@@ -42,5 +48,9 @@ public class Chore {
     public Cleaner getCleaner() { return cleaner; }
 
     public void setCleaner(Cleaner cleaner) { this.cleaner = cleaner; }
+
+    public Login getLogin() { return login; }
+
+    public void setLogin(Login login) { this.login = login; }
 
 }
