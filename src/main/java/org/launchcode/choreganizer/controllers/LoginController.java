@@ -39,7 +39,7 @@ public class LoginController{
         }
 
         Login user = loginDao.findByUser(newUser.getUser());
-        if(user != null && user.getUser().equalsIgnoreCase(newUser.getUser())) {
+        if(user != null && user.getUser().equals(newUser.getUser()) && user.getPassword().equals(newUser.getPassword())) {
             model.addAttribute("chores", choreDao.findAll());
             model.addAttribute("title", "Chores");
             return "/chore/home";
@@ -49,12 +49,14 @@ public class LoginController{
         newUser.setPassword("");
         return "login/login";
     }
+
     @RequestMapping(value="registration", method = RequestMethod.GET)
     public String registerUser (Model model) {
         model.addAttribute((new Login()));
         model.addAttribute("title", "Register");
         return "login/registration";
     }
+
     @RequestMapping(value = "registration", method = RequestMethod.POST)
         public String verifyRegisterUser(Model model, @ModelAttribute @Valid Login user, Errors errors) {
 

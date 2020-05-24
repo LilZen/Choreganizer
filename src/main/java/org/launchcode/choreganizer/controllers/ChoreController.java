@@ -2,7 +2,6 @@ package org.launchcode.choreganizer.controllers;
 
 import org.launchcode.choreganizer.models.Chore;
 import org.launchcode.choreganizer.models.Cleaner;
-import org.launchcode.choreganizer.models.Login;
 import org.launchcode.choreganizer.models.data.ChoreDao;
 import org.launchcode.choreganizer.models.data.CleanerDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,7 +82,7 @@ public class ChoreController{
         Cleaner clean = cleanerDao.findById(id).orElse(null);
         List<Chore> chores = clean.getChores();
         model.addAttribute("chores", chores);
-        model.addAttribute("title", "Chores for Cleaner: " + clean.getName());
+        model.addAttribute("title", "Chores for " + clean.getName());
         return "chore/home";
     }
 }
