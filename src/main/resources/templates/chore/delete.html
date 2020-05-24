@@ -8,13 +8,13 @@
 
 <nav th:replace="fragments :: nav"></nav>
 
-<h1 th:text="${title}">Default Title</h1>
+<h1 class="title" th:text="${title}">Default Title</h1>
 
 <form method="post">
 
     <div th:each="chore : ${chores}" class="checkbox">
         <input type="checkbox" name="ids" th:value="${chore.id}" th:id="${chore.id}" />
-        <label th:for="${chore.id}" th:text="${chore.name}"></label>
+        <label th:for="${chore.id}" th:text="${chore.name} + ' - ' + ${chore.cleaner.name}"></label>
         <br />
     </div>
 
